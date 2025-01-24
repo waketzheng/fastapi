@@ -1,11 +1,11 @@
-from typing import Optional
+from typing import Annotated, Optional
 
 from fastapi.openapi.models import APIKey, APIKeyIn
 from fastapi.security.base import SecurityBase
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
 from starlette.status import HTTP_403_FORBIDDEN
-from typing_extensions import Annotated, Doc
+from typing_extensions import Doc
 
 
 class APIKeyBase(SecurityBase):
@@ -92,7 +92,7 @@ class APIKeyQuery(APIKeyBase):
         ] = True,
     ):
         self.model: APIKey = APIKey(
-            **{"in": APIKeyIn.query},  # type: ignore[arg-type]
+            **{"in": APIKeyIn.query},
             name=name,
             description=description,
         )
@@ -187,7 +187,7 @@ class APIKeyHeader(APIKeyBase):
         ] = True,
     ):
         self.model: APIKey = APIKey(
-            **{"in": APIKeyIn.header},  # type: ignore[arg-type]
+            **{"in": APIKeyIn.header},
             name=name,
             description=description,
         )
@@ -282,7 +282,7 @@ class APIKeyCookie(APIKeyBase):
         ] = True,
     ):
         self.model: APIKey = APIKey(
-            **{"in": APIKeyIn.cookie},  # type: ignore[arg-type]
+            **{"in": APIKeyIn.cookie},
             name=name,
             description=description,
         )
